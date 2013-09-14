@@ -37,7 +37,6 @@ import ru.truba.touchgallery.TouchView.InputStreamWrapper.InputStreamProgressLis
 public class UrlTouchImageView extends RelativeLayout {
     protected ProgressBar mProgressBar;
     protected TouchImageView mImageView;
-    protected OnClickListener mClickListener;
 
     protected Context mContext;
 
@@ -79,11 +78,6 @@ public class UrlTouchImageView extends RelativeLayout {
         new ImageLoadTask().execute(imageUrl);
     }
 
-    public void setClickListener(OnClickListener l)
-    {
-        mClickListener = l;
-        mImageView.setOnClickListener(l);
-    }
     //No caching load
     public class ImageLoadTask extends AsyncTask<String, Integer, Bitmap>
     {

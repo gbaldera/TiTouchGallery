@@ -8,7 +8,8 @@
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.View;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
@@ -30,6 +31,7 @@ public class TouchGalleryView extends TiUIView {
 
     private TouchGalleryProxy mProxy;
     private final LinearLayout mContainer;
+    private final GestureDetector mGestureDetector;
     private UrlPagerAdapter mAdapter;
     private GalleryViewPager mPager;
     private final List<String> images;
@@ -40,14 +42,29 @@ public class TouchGalleryView extends TiUIView {
         super(proxy);
         mProxy = (TouchGalleryProxy) proxy;
 
-        mContainer = new LinearLayout(proxy.getActivity());
+        mGestureDetector = new GestureDetector(proxy.getActivity(), new GestureListener());
+        mContainer = (new LinearLayout(proxy.getActivity())
+        {
+            @Override
+            public boolean onTouchEvent(MotionEvent event)
+            {
+                return mGestureDetector.onTouchEvent(event);
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent event)
+            {
+                return mGestureDetector.onTouchEvent(event);
+            }
+        });
+
         images = new ArrayList<String>();
 
         ViewPager.LayoutParams viewPagerLayoutParams = new ViewPager.LayoutParams();
         viewPagerLayoutParams.width = ViewPager.LayoutParams.MATCH_PARENT;
         viewPagerLayoutParams.height = ViewPager.LayoutParams.MATCH_PARENT;
 
-        mAdapter = new UrlPagerAdapter(mContainer.getContext(), images, new ClickListener());
+        mAdapter = new UrlPagerAdapter(mContainer.getContext(), images);
         mPager = buildPager(mContainer.getContext(), mAdapter);
         mCurIndex = mAdapter.getCurrentPosition();
 
@@ -197,14 +214,44 @@ public class TouchGalleryView extends TiUIView {
         return mAdapter.getCount();
     }
 
-    public class ClickListener implements View.OnClickListener
+    public class GestureListener extends GestureDetector.SimpleOnGestureListener
     {
-        @Override
-        public void onClick(View view) {
-            Log.d(TAG, "View touched");
-
+        private KrollDict getEventData(MotionEvent event)
+        {
             int index = getCurrentPage();
-            mProxy.fireTouched(index, images.get(index));
+
+            KrollDict data = dictFromEvent(event);
+            data.put("url", index);
+            data.put("currentPage", images.get(index));
+
+            return data;
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent event) {
+            Log.d(TAG, "TAP on " + mProxy);
+
+            if (mProxy.hasListeners(TiC.EVENT_SINGLE_TAP)) {
+                mProxy.fireEvent(TiC.EVENT_SINGLE_TAP, getEventData(event));
+            }
+
+            return true;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent event)
+        {
+            Log.d(TAG, "LONGPRESS on " + mProxy);
+
+            if (mProxy.hasListeners(TiC.EVENT_LONGPRESS)) {
+                mProxy.fireEvent(TiC.EVENT_LONGPRESS, getEventData(event));
+            }
+        }
+
+        @Override
+        public boolean onDown(MotionEvent event)
+        {
+            return false;
         }
     }
 }

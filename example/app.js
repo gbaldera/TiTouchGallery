@@ -26,9 +26,13 @@ if (Ti.Platform.name == "android") {
     proxy.addEventListener("scroll", function(e){
         Ti.API.debug("Scroll event fired: " + JSON.stringify(e));
     });
-    proxy.addEventListener(titouchgallery.EVENT_VIEW_TOUCHED, function(e){
+    proxy.addEventListener("singletap", function(e){
         alert("Page: " + e.currentPage);
-        Ti.API.debug(titouchgallery.EVENT_VIEW_TOUCHED + " event fired: " + JSON.stringify(e));
+        Ti.API.debug("SingleTap event fired: " + JSON.stringify(e));
+    });
+    proxy.addEventListener("longpress", function(e){
+        alert("Page: " + e.currentPage);
+        Ti.API.debug("LongPress event fired: " + JSON.stringify(e));
     });
 
     win.add(proxy);

@@ -104,14 +104,4 @@ public class TouchGalleryProxy extends TiViewProxy {
             fireEvent(TiC.EVENT_SCROLL, options);
         }
     }
-
-    public void fireTouched(int currentPage, String currentURL)
-    {
-        if (hasListeners(TitouchgalleryModule.EVENT_VIEW_TOUCHED)) {
-            KrollDict options = new KrollDict();
-            options.put("url", currentURL);
-            options.put("currentPage", currentPage);
-            fireEvent(TitouchgalleryModule.EVENT_VIEW_TOUCHED, options);
-        }
-    }
 }
