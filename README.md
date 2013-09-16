@@ -9,6 +9,10 @@ TiTouchGallery is a native Android module, which allows you to create a gallery 
 This module is a fork of the android gallery widget from [Dreddik](https://github.com/Dreddik/AndroidTouchGallery) with some changes.
 <br>Thanks Dreddik for share this.
 
+##Download
+
+Grab the lastest build from the [dist folder](https://github.com/gbaldera/TiTouchGallery/tree/develop/dist)
+
 ## Accessing the TiTouchGallery Module
 
 To access this module from JavaScript, you would do the following:
