@@ -15,6 +15,12 @@ Grab the lastest build from the [dist folder](https://github.com/gbaldera/TiTouc
 
 ## Accessing the TiTouchGallery Module
 
+Simply add the following lines to your `tiapp.xml` file:
+    
+    <modules>
+        <module platform="android">com.gbaldera.titouchgallery</module> 
+    </modules>
+
 To access this module from JavaScript, you would do the following:
 
 	var titouchgallery = require("com.gbaldera.titouchgallery");
