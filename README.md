@@ -35,7 +35,7 @@ Array of images to display in the gallery (Only Remote images are supported for 
 
 ####currentPage : Number
 
-ndex of the active page
+index of the active page
 
 ## Methods
 
@@ -220,7 +220,7 @@ win.open();
 
 Gustavo Rodriguez Baldera
 
-[www.gbaldera.com](www.gbaldera.com) 
+[www.gbaldera.com](http://www.gbaldera.com/) 
 
 ## License
 
