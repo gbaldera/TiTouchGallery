@@ -1,0 +1,155 @@
+<h1>TiTouchGallery Module</h1>
+<h2>Description</h2>
+<p>TiTouchGallery is a native Android module, which allows you to create a gallery view, with zoom (pinch / double tap) and pan support, in your Titanium Android app.</p>
+<h2>Copyright</h2>
+<p>This module is a fork of the android gallery widget from <a href="https://github.com/Dreddik/AndroidTouchGallery">Dreddik</a> with some changes.
+<br>Thanks Dreddik for share this.</p>
+<h2>Accessing the TiTouchGallery Module</h2>
+<p>To access this module from JavaScript, you would do the following:</p>
+<pre><code>var titouchgallery = require("com.gbaldera.titouchgallery");
+</code></pre>
+<p>The titouchgallery variable is a reference to the Module object.  <br />
+</p>
+<h2>Properties</h2>
+<h4>images : String[]</h4>
+<p>Array of images to display in the gallery (Only Remote images are supported for now)</p>
+<h4>currentPage : Number</h4>
+<p>ndex of the active page</p>
+<h2>Methods</h2>
+<p>List of methods supported in this module:</p>
+<h4>Gallery creation</h4>
+<pre><code>var proxy = titouchgallery.createTouchGallery({
+    images: [
+        "http://cs407831.userapi.com/v407831207/18f6/jBaVZFDhXRA.jpg",
+        "http://cs407831.userapi.com/v4078f31207/18fe/4Tz8av5Hlvo.jpg",
+        "http://cs407831.userapi.com/v407831207/1906/oxoP6URjFtA.jpg",
+        "http://cs407831.userapi.com/v407831207/190e/2Sz9A774hUc.jpg",
+        "http://cs407831.userapi.com/v407831207/1916/Ua52RjnKqjk.jpg",
+        "http://cs407831.userapi.com/v407831207/191e/QEQE83Ok0lQ.jpg"
+    ],
+    currentPage:2
+});
+</code></pre>
+<h4>getImages : String[]</h4>
+<p>Get the array with the images displayed in the gallery.</p>
+<h5>Arguments</h5>
+<p>None</p>
+<h4>setImages</h4>
+<p>Set the array with the images to be displayed in the gallery.</p>
+<h5>Arguments</h5>
+<ul>
+<li>Images [array]: Images to be displayed in the gallery</li>
+</ul>
+<h4>addImage</h4>
+<p>Adds a new image to the gallery</p>
+<h5>Arguments</h5>
+<ul>
+<li>Image [string]: Image URL to be added to the gallery</li>
+</ul>
+<h4>removeImage</h4>
+<p>Removes the specified image from the gallery</p>
+<h5>Arguments</h5>
+<ul>
+<li>Image [string]: Image URL to be removed from the gallery</li>
+</ul>
+<h4>getCount : Number</h4>
+<p>Get the total number of images in the gallery.</p>
+<h5>Arguments</h5>
+<p>None</p>
+<h4>moveNext</h4>
+<p>Sets the current page to the next consecutive page in images.</p>
+<h5>Arguments</h5>
+<p>None</p>
+<h4>movePrevious</h4>
+<p>Sets the current page to the previous consecutive page in images.</p>
+<h5>Arguments</h5>
+<p>None</p>
+<h4>getCurrentPage : Number</h4>
+<p>Gets the value of the currentPage property.</p>
+<h5>Arguments</h5>
+<p>None</p>
+<h4>setCurrentPage</h4>
+<p>Sets the value of the currentPage property.</p>
+<h5>Arguments</h5>
+<ul>
+<li>currentPage [number]: New value for the currentPage property</li>
+</ul>
+<h2>Events</h2>
+<h3>singletap</h3>
+<p>Fired when the device detects a single tap against the view.</p>
+<h4>Properties</h4>
+<ul>
+<li>currentPage : Index of the image.</li>
+<li>url : URL of the image.</li>
+<li>source : Source object that fired the event.</li>
+<li>type : String Name of the event fired.</li>
+<li>x : NumberX coordinate of the event from the source view's coordinate system.</li>
+<li>y : NumberY coordinate of the event from the source view's coordinate system.</li>
+</ul>
+<h3>longpress</h3>
+<p>Fired when the device detects a long press against this view.</p>
+<h4>Properties</h4>
+<ul>
+<li>currentPage : Index of the image.</li>
+<li>url : URL of the image.</li>
+<li>source : Source object that fired the event.</li>
+<li>type : String Name of the event fired.</li>
+<li>x : NumberX coordinate of the event from the source view's coordinate system.</li>
+<li>y : NumberY coordinate of the event from the source view's coordinate system.</li>
+</ul>
+<h3>scroll</h3>
+<p>Fired when the gallery changed the page</p>
+<h4>Properties</h4>
+<ul>
+<li>currentPage : Index of the image.</li>
+<li>url : URL of the image.</li>
+</ul>
+<h2>Usage</h2>
+<p>```</p>
+<p>var win = Ti.UI.createWindow({
+    backgroundColor:'#000'
+});</p>
+<p>var titouchgallery = require('com.gbaldera.titouchgallery');</p>
+<p>if (Ti.Platform.name == "android") {
+    var proxy = titouchgallery.createTouchGallery({
+        images: [
+            "http://cs407831.userapi.com/v407831207/18f6/jBaVZFDhXRA.jpg",
+            "http://cs407831.userapi.com/v4078f31207/18fe/4Tz8av5Hlvo.jpg",
+            "http://cs407831.userapi.com/v407831207/1906/oxoP6URjFtA.jpg",
+            "http://cs407831.userapi.com/v407831207/190e/2Sz9A774hUc.jpg",
+            "http://cs407831.userapi.com/v407831207/1916/Ua52RjnKqjk.jpg",
+            "http://cs407831.userapi.com/v407831207/191e/QEQE83Ok0lQ.jpg"
+        ]
+    });
+    proxy.addEventListener("scroll", function(e){
+        Ti.API.debug("Scroll event fired: " + JSON.stringify(e));
+    });
+    proxy.addEventListener("singletap", function(e){
+        alert("Page: " + e.currentPage);
+        Ti.API.debug("SingleTap event fired: " + JSON.stringify(e));
+    });
+    proxy.addEventListener("longpress", function(e){
+        alert("Page: " + e.currentPage);
+        Ti.API.debug("LongPress event fired: " + JSON.stringify(e));
+    });</p>
+<pre><code>win.add(proxy);
+</code></pre>
+<p>}</p>
+<p>win.open();</p>
+<p>```</p>
+<h2>TODO</h2>
+<ul>
+<li>Add support for local images.</li>
+<li>Cache remote images.</li>
+</ul>
+<h2>Changelog</h2>
+<ul>
+<li>1.1:</li>
+<li>Fixed single tap and added long press events</li>
+<li>1.0: Initial version</li>
+</ul>
+<h2>Author</h2>
+<p>Gustavo Rodriguez Baldera</p>
+<p><a href="www.gbaldera.com">www.gbaldera.com</a> </p>
+<h2>License</h2>
+<p>It's open source and it's under <a href="http://www.dbad-license.org/">DBAD License</a></p>
