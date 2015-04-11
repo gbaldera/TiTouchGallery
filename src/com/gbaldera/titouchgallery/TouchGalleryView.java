@@ -28,7 +28,6 @@ import java.util.List;
 public class TouchGalleryView extends TiUIView {
 
     private static final String TAG = "TouchGallery";
-
     private TouchGalleryProxy mProxy;
     private final LinearLayout mContainer;
     private final GestureDetector mGestureDetector;
@@ -41,7 +40,6 @@ public class TouchGalleryView extends TiUIView {
     public TouchGalleryView(TiViewProxy proxy) {
         super(proxy);
         mProxy = (TouchGalleryProxy) proxy;
-
         mGestureDetector = new GestureDetector(proxy.getActivity(), new GestureListener());
         mContainer = (new LinearLayout(proxy.getActivity())
         {
