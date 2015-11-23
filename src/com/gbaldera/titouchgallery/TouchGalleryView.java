@@ -79,7 +79,6 @@ public class TouchGalleryView extends TiUIView {
         pager.setOffscreenPageLimit(3);
 
         adapter.setOnItemChangeListener(new BasePagerAdapter.OnItemChangeListener() {
-            @Override
             public void onItemChange(int currentPosition) {
                 mCurIndex = currentPosition;
                 mProxy.fireScroll(currentPosition, images.get(currentPosition));
