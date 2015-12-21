@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.0.GA/android/android-support-v4.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.0.GA/android/titanium.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.1.GA/android/android-support-v4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.1.GA/android/titanium.jar"/>
 	<classpathentry exported="true" kind="lib" path="/usr/local/var/lib/android-sdk/add-ons/addon-google_apis-google-23/libs/maps.jar"/>
 	<classpathentry exported="true" kind="lib" path="/usr/local/var/lib/android-sdk/platforms/android-23/android.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.0.GA/android/kroll-apt.jar"/>
-	<classpathentry kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.0.GA/android/kroll-common.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.1.GA/android/kroll-apt.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/maf/Library/Application Support/Titanium/mobilesdk/osx/5.1.1.GA/android/kroll-common.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
