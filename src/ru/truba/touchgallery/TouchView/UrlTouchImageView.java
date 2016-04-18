@@ -30,8 +30,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-//import ru.truba.touchgallery.R;
+
 import com.gbaldera.titouchgallery.RHelper;
+
+//import ru.truba.touchgallery.R;
 import ru.truba.touchgallery.TouchView.InputStreamWrapper.InputStreamProgressListener;
 
 public class UrlTouchImageView extends RelativeLayout {
@@ -63,7 +65,7 @@ public class UrlTouchImageView extends RelativeLayout {
         this.addView(mImageView);
         mImageView.setVisibility(GONE);
 
-        mProgressBar = new ProgressBar(mContext, null, android.R.attr.progressBarStyleLarge);
+        mProgressBar = new ProgressBar(mContext, null, android.R.attr.progressBarStyleHorizontal);
         params = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.CENTER_VERTICAL);
         params.setMargins(30, 0, 30, 0);
@@ -77,7 +79,11 @@ public class UrlTouchImageView extends RelativeLayout {
     {
         new ImageLoadTask().execute(imageUrl);
     }
-
+    
+    public void setScaleType(ScaleType scaleType) {
+        mImageView.setScaleType(scaleType);
+    }
+    
     //No caching load
     public class ImageLoadTask extends AsyncTask<String, Integer, Bitmap>
     {
@@ -94,7 +100,6 @@ public class UrlTouchImageView extends RelativeLayout {
                 InputStreamWrapper bis = new InputStreamWrapper(is, 8192, totalLen);
                 bis.setProgressListener(new InputStreamProgressListener()
 				{					
-					@Override
 					public void onProgress(float progressValue, long bytesLoaded,
 							long bytesTotal)
 					{
@@ -130,7 +135,7 @@ public class UrlTouchImageView extends RelativeLayout {
 		@Override
 		protected void onProgressUpdate(Integer... values)
 		{
-			//mProgressBar.setProgress(values[0]);
+			mProgressBar.setProgress(values[0]);
 		}
     }
 }

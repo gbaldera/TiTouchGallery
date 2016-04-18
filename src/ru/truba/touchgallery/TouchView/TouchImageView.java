@@ -31,7 +31,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -40,7 +39,7 @@ import android.widget.ImageView;
 @SuppressLint("NewApi")
 public class TouchImageView extends ImageView {
 
-//    private static final String TAG = "Touch";
+    // private static final String TAG = "Touch";
     // These matrices will be used to move and zoom image
     Matrix matrix = new Matrix();
     Matrix savedMatrix = new Matrix();
@@ -122,7 +121,6 @@ public class TouchImageView extends ImageView {
             mScaleDetector = new ScaleGestureDetector(mContext, new ScaleListener());
         }
         setOnTouchListener(new OnTouchListener() {
-            @Override
             public boolean onTouch(View v, MotionEvent rawEvent) {
                 WrapMotionEvent event = WrapMotionEvent.wrap(rawEvent);
                 if (mScaleDetector != null)
@@ -412,7 +410,7 @@ public class TouchImageView extends ImageView {
         // ...
         float x = event.getX(0) - event.getX(1);
         float y = event.getY(0) - event.getY(1);
-        return FloatMath.sqrt(x * x + y * y);
+        return (float) Math.sqrt(x * x + y * y);
     }
 
     /** Calculate the mid point of the first two fingers */
@@ -516,4 +514,4 @@ public class TouchImageView extends ImageView {
             if (mService.get().mOnClickListener != null) mService.get().mOnClickListener.onClick(mService.get());
 	    }
 	}
-}
+};

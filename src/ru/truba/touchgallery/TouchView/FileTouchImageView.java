@@ -56,7 +56,6 @@ public class FileTouchImageView extends UrlTouchImageView
                 InputStreamWrapper bis = new InputStreamWrapper(fis, 8192, file.length());
                 bis.setProgressListener(new InputStreamProgressListener()
 				{					
-					@Override
 					public void onProgress(float progressValue, long bytesLoaded,
 							long bytesTotal)
 					{
