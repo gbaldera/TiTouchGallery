@@ -2,18 +2,17 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 1.2
-apiversion: 2
-description: My module
+version: 2.0.0
+apiversion: 4
+architectures: arm64-v8a armeabi-v7a x86
+description: titouchgallery
 author: Gustavo Rodriguez Baldera
 license: Specify your license
 copyright: Copyright (c) 2013 by Your Company
-
 
 # these should not be edited
 name: titouchgallery
 moduleid: com.gbaldera.titouchgallery
 guid: 7b4dfc31-49a6-416f-88a0-1c50d1464cf3
 platform: android
-architectures: armeabi armeabi-v7a arm64-v8a x86 x86_64
-minsdk: 4.0.0.GA
+minsdk: 7.0.0
